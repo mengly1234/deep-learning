@@ -2,6 +2,8 @@
 
 ## mobilenetV1（2017）
 
+论文地址：https://arxiv.org/pdf/1704.04861
+
 主要是使用深度可分离卷积
 
 深度可分离卷积包含两个过程：逐通道卷积（depthwise convolution）和逐点卷积（pointwise convolution）

@@ -25,8 +25,14 @@
 
 ### 训练相关的参数
 
-	# rect：矩形训练，默认关闭,加了default =True，就是表示图片为1184*1920，
+	# rect：矩形训练，默认关闭,加了default =True
 	# resume：断点续训，如果训练过程中意外断掉，或者是想接着训练，就可以使用该参数
+	  使用方法：
+	  1、对于被打断，继续训练，使用命令行输入：
+	  python train.py --resume ./run/train/exp/weights/last.pt
+	  2、对于训练完成之后，想继续训练，需要修改想要继续训练的文件夹的opt.yaml里面的epochs参数，修改为想要继续的轮数，比如说之前模型训练了100轮，现在想加50轮，就可以把epochs修改为150。然后找到./utils/torch_utils.py里面的smart_resume函数，将start_epoch修改之前的训练轮数，比如100。
+	  然后使用命令：
+	  python train.py --resume ./run/train/exp/weights/last.pt
 	# noautoanchor：关闭自动计算锚框功能，默认关闭
 	# noplots：不保存可视化文件
 	# evolve：使用超参数优化算法进行自动调参，默认关闭
