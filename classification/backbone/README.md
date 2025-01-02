@@ -8,6 +8,14 @@
 
 深度可分离卷积包含两个过程：逐通道卷积（depthwise convolution）和逐点卷积（pointwise convolution）
 
+DWConv:
+
+![dwconv](D:\github_code\deep-learning\imgs\DWConv.jpg)
+
+PWConv:
+
+![pwconv](D:\github_code\deep-learning\imgs\PWConv.jpg)
+
 1、逐通道卷积：
 
 逐通道卷积是一个卷积核负责一个通道，比如说，现在有一个28X28X256 的 feature map，那么逐通道卷积就一共有256个卷积核，每一个卷积核负责一个通道，经过逐通道卷积之后得到的 feature map 和输入的 feature map 的通道数是一样的，没有改变。
@@ -22,11 +30,37 @@
 
 ## mobilenetV2（2018）
 
+论文地址：https://arxiv.org/pdf/1801.04381
 
+在mobilenetV1的基础上，增加了倒置残差结构（Inverted Residuals）和线性瓶颈层（Linear Bottlenecks）。
+
+1、倒置残差结构：
+
+由于mobilenet使用的是深度可分离卷积，DWConv每个卷积核的通道数都是1，就是导致特征通道数太少，不利于提取丰富的特征信息，于是V2设计了倒置残差结构。与ResNet的残差结构不同，Inverted Residuals输入和输出的通道数很少，在中间对卷积通道数进行扩展。
+
+![Inverted_Residuals](D:\github_code\deep-learning\imgs\Inverted_Residuals.png)
+
+在Inverted_Residuals中的扩张层和深度可分离卷积之后，使用的激活函数是ReLU6。Inverted Residuals 具体的实现如下：
+
+![mobile](D:\github_code\deep-learning\imgs\mobileV2.png)
+
+
+
+2、线性瓶颈层
+
+如上图所示，在倒置残差结构里面的最后一层没有使用ReLU激活函数，还是使用的是一个1x1的线性层，防止非线性操作破坏过多的信息，避免信息损失。
 
 ## mobilenetV3（2019）
 
+mobilenetV3整体还是采用了v2的结构，主要改进点在于：
 
+1、使用NAS执行模块级搜索，构建一个高速的框架。
+
+2、加入了SEAttention。
+
+3、将最后一步的平均池化层前移并移除最后一个卷积层，引入h-swish激活函数。
+
+![v3](D:\github_code\deep-learning\imgs\mobilenetv3.png)
 
 ## mobilenetV4（2024）
 
