@@ -10,11 +10,11 @@
 
 DWConv:
 
-![dwconv](D:\github_code\deep-learning\imgs\DWConv.jpg)
+![dwconv](.\imgs_backbone\DWConv.jpg)
 
 PWConv:
 
-![pwconv](D:\github_code\deep-learning\imgs\PWConv.jpg)
+![pwconv](.\imgs_backbone\PWConv.jpg)
 
 1、逐通道卷积：
 
@@ -38,11 +38,11 @@ PWConv:
 
 由于mobilenet使用的是深度可分离卷积，DWConv每个卷积核的通道数都是1，就是导致特征通道数太少，不利于提取丰富的特征信息，于是V2设计了倒置残差结构。与ResNet的残差结构不同，Inverted Residuals输入和输出的通道数很少，在中间对卷积通道数进行扩展。
 
-![Inverted_Residuals](D:\github_code\deep-learning\imgs\Inverted_Residuals.png)
+![Inverted_Residuals](.\imgs_backbone\Inverted_Residuals.png)
 
 在Inverted_Residuals中的扩张层和深度可分离卷积之后，使用的激活函数是ReLU6。Inverted Residuals 具体的实现如下：
 
-![mobile](D:\github_code\deep-learning\imgs\mobileV2.png)
+![mobile](.\imgs_backbone\mobileV2.png)
 
 
 
@@ -60,7 +60,7 @@ mobilenetV3整体还是采用了v2的结构，主要改进点在于：
 
 3、将最后一步的平均池化层前移并移除最后一个卷积层，引入h-swish激活函数。
 
-![v3](D:\github_code\deep-learning\imgs\mobilenetv3.png)
+![v3](.\imgs_backbone\mobilenetv3.png)
 
 ## mobilenetV4（2024）
 
